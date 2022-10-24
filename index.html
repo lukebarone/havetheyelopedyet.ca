@@ -16,13 +16,38 @@
 </head>
 <body>
     <header>
-        <div class="jumbotron">
+        <div class="jumbotron text-center">
         <h1>Have Luke and Natasha eloped yet?</h1>
     </div>
     </header>
     <content>
         <div class="row">
-            <div class="text-center col-sm-12">Not yet. Try again later</div>
+            <script>
+                url = "status.json"
+                fetch(url)
+                .then(function (response) {
+                    // The JSON data will arrive here
+                    return response.json();
+                })
+                .then(function (data) {
+                    processData(data);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+                function processData(data) {
+                    // Only element should be "eloped", either "no" or "yes"
+                    var status_div = document.getElementsByName("status");
+                    if(data[0].eloped == "no") {
+                        // Not eloped yet. Return a message
+                        status_div.innerHTML = "Nope, not yet";
+                    } else {
+                        // We must have eloped. Return another message.
+                        status_div.innerHTML = "YES! They did it without telling you"
+                    }
+                }
+            </script>
+            <div class="text-center col-sm-12" name="status"></div>
         </div>
         <div class="row">
             <div class="col-sm-12">
