@@ -5,12 +5,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-        .footer {
-            position: relative;
-            margin-top: -150px;
-            height: 150px;
-            clear: both;
-            padding-top: 20px;
+        .footer-text {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .image {
+            height: auto;
+            max-width: 100%;
+        }
+        .status-text {
+            font-weight: bolder;
+            font-size: larger;
         }
     </style>
 </head>
@@ -20,10 +24,11 @@
         <h1>Have Luke and Natasha eloped yet?</h1>
     </div>
     </header>
-    <content>
+    <main>
         <div class="row">
-            <div class="text-center col-sm-12" id="status"></div>
+            <div class="text-center col-sm-12 status-text" id="status"></div>
             <script>
+                /* Get the data from the JSON file, and put it on the page */
                 url = "https://havetheyelopedyet.ca/status.json"
                 fetch(url)
                 .then(function (response) {
@@ -41,22 +46,27 @@
                     var status_div = document.getElementById("status");
                     if(data[0].eloped == "no") {
                         // Not eloped yet. Return a message
-                        status_div.innerHTML = "Nope, not yet";
+                        status_div.innerHTML = "Nope, not yet. Check back later.";
                     } else {
                         // We must have eloped. Return another message.
-                        status_div.innerHTML = "YES! They did it without telling you"
+                        status_div.innerHTML = "YES! They did it without telling you."
                     }
                 }
             </script>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <img src="signal-2022-10-21-145430.jpeg" class="img-fluid rounded" style="height: auto; max-width: 100%" />
+                <img src="signal-2022-10-21-145430.jpeg"
+                class="img-fluid rounded image"
+                alt="Natasha and Luke together" />
             </div>
         </div>
-    </content>
+    </main>
     <footer class="bg-info text-center text-lg-start fixed-bottom">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">&copy; 2022 by Luke Barone and Natasha Rempel</div>
+        <div class="text-center p-3 footer-text">&copy; 2022 by
+            <a href="https://github.com/lukebarone"
+            title="Luke's github" target="_blank">Luke Barone</a>
+            and Natasha Rempel</div>
     </footer>
 </body>
 </html>
