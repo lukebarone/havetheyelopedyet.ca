@@ -22,7 +22,7 @@
     </header>
     <content>
         <div class="row">
-            <div class="text-center col-sm-12" name="status"></div>
+            <div class="text-center col-sm-12" id="status"></div>
             <script>
                 url = "https://havetheyelopedyet.ca/status.json"
                 fetch(url)
@@ -38,7 +38,7 @@
                 })
                 function processData(data) {
                     // Only element should be "eloped", either "no" or "yes"
-                    var status_div = document.getElementsByName("status");
+                    var status_div = document.getElementById("status");
                     if(data[0].eloped == "no") {
                         // Not eloped yet. Return a message
                         status_div.innerHTML = "Nope, not yet";
